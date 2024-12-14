@@ -1,0 +1,9 @@
+{% include 'helper/header.html' %}
+{% include 'helper/cssfile.html' %}
+
+{% if user.is_authenticated %}
+<h1>Welcome, {{ user.username }}! Your role is {{ request.session.user_role }} {{ request.session.userid }}</h1>
+{% else %}
+<h1>Guest User</h1>
+{% endif %}
+{% include 'helper/footer.html' %}

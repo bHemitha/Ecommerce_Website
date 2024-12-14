@@ -1,0 +1,40 @@
+{% include 'helper/header.html' %}
+{% include 'helper/cssfile.html' %}
+<h2>Search Results for "{{ query }}"</h2>
+<div class="container">
+    <div class="row">
+        {% for product in products %}
+        <div class="column">
+            <div class="card bg-dark text-white" style="width: 18rem;">
+                <img class="card-img-top" src="../../{{ product.image }}" alt="Card image cap">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                        </div>
+                        <div class="col-12">
+                            <p class="card-text">{{ product.price }}</p>
+                        </div>
+                    </div>
+                    <p class="card-text">{{ product.description }}</p>
+                </div>
+                {% if request.session.user_role == 'buyer' %}
+                <div class="card-body">
+                    <form id="buyNowForm" action="{% url 'buy_now' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button>Buy Now</button>
+                    </form>
+                    <form id="addToCartForm" action="{% url 'add_to_cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                        <button>Add to Cart</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% include 'helper/footer.html' %}

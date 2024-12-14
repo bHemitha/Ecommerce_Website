@@ -1,0 +1,201 @@
+{% include 'helper/header.html' %}
+
+<style>
+    #products {
+        margin-top: 30px;
+        position: relative;
+        width: 100%;
+    }
+
+    .product-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 20px;
+        padding: 20px;
+        background-color: black;
+        color: tan;
+        box-shadow: 0px 4px 8px rgba(1, 1, 1, 1);
+    }
+
+    .product-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14rem;
+        width: 90%;
+    }
+
+    .product-image img {
+        display: block;
+        object-fit: cover;
+        width: 300px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .product-content {
+        width: 100%;
+        margin-top: 2rem;
+    }
+
+    .product-des {
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: var(--Darkgrayish);
+    }
+
+    .price {
+        margin-top: 1.5rem;
+    }
+
+    .total-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--Grayish);
+    }
+
+    .qty {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+    }
+
+
+    .button {
+        display: inline-block;
+        font-weight: 400;
+        line-height: 1.5;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        background-color: tan;
+        border: 2px solid black;
+        margin: auto;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        border-radius: .25rem;
+    }
+
+    .button:hover {
+        background-color: #d2d0cf;
+        color: black;
+    }
+
+    .button:active {
+        background-color: #d2d0cf;
+        color: black;
+    }
+
+    .btns button {
+        outline: none;
+        border: none;
+        background-color: var(--Lightgrayish);
+        color: var(--Orange);
+        padding: 0.7rem 1.2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .qty-numbers {
+        color: var(--Darkgrayish);
+        font-weight: 600;
+        width: 4rem;
+        text-align: center;
+        margin: 0 0.5rem;
+    }
+
+    .add-cart {
+        outline: none;
+        border: none;
+        background-color: var(--Orange);
+        font-family: inherit;
+        color: var(--White);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        border-radius: 5px;
+        margin-top: 2rem;
+        cursor: pointer;
+    }
+
+    .add-cart svg {
+        margin-right: 1rem;
+    }
+
+    .box {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: hsl(0, 0%, 0%);
+        color: tan;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .box img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        margin: auto;
+    }
+
+    .button-container form {
+        display: inline;
+        margin-right: 10px;
+    }
+</style>
+
+</style>
+
+<main id="products">
+    <div class="container">
+        <div class="product-card">
+            <div class="product-wrapper">
+                <div class="product-image">
+                    <img src="../../{{ product.image }}" alt="{{ product.name }}">
+                </div>
+                <div class="product-content">
+                    <p class="company-txt">{{ product.name }}</p>
+                    <p class="product-des">{{ product.description }}</p>
+                    <div class="price">
+                        <p class="total-price">₹{{ product.price }}</p>
+                    </div>
+
+                    <div class="button-container">
+                        {% if user.is_authenticated %}
+                        <form action="{% url 'add_to_cart' %}" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <button type="submit" class="button">Add to Cart</button>
+                        </form>
+                        <form id="buyNowFormcart" action="{% url 'buy_now_from_cart' %}" method="post"
+                            style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="button">Buy Now</button>
+                        </form>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="button">Buy Now</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            {{ product.Product_details | safe }}
+        </div>
+    </div>
+</main>
+
+{% include 'helper/footer.html' %}

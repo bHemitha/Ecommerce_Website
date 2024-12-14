@@ -1,0 +1,71 @@
+{% include 'helper/header.html' %}
+{% include 'helper/cssfile.html' %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    .form {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .form form {
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #000;
+        color: tan;
+    }
+
+    .form h2 {
+        text-align: center;
+    }
+
+    .form button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background-color: tan;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form button:hover {
+        background-color: tan;
+        color: black;
+    }
+
+    .form input[type="text"],
+    .form input[type="password"],
+    .form input[type="email"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form label {
+        font-weight: bold;
+    }
+
+    .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+</style>
+<h2>Register</h2>
+<div class="form">
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</div>
+{% include 'helper/footer.html' %}

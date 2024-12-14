@@ -1,0 +1,38 @@
+<footer id="footer" class="py-3 my-4 hidden-footer">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+        <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
+    <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
+</footer>
+
+<script>
+    window.addEventListener('scroll', function () {
+        var footer = document.getElementById('footer');
+        var scrollPosition = window.scrollY + window.innerHeight;
+        var documentHeight = document.body.offsetHeight;
+
+        if (scrollPosition >= documentHeight - 1) {
+            // User has scrolled to near the end of the page, show the footer
+            footer.classList.remove('hidden-footer');
+        } else {
+            // User is not near the end of the page, hide the footer
+            footer.classList.add('hidden-footer');
+        }
+    });
+</script>
+
+<style>
+    body {
+        margin-bottom: 200px;
+        /* Adjust this value based on your footer height */
+    }
+
+    .hidden-footer {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+</style>

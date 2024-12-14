@@ -1,0 +1,161 @@
+{% include 'helper/header.html' %}
+{% include 'helper/cssfile.html' %}
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        margin: 20PX;
+        background-color: black;
+        color: white;
+    }
+
+    .button {
+        display: inline-block;
+        font-weight: 400;
+        line-height: 1.5;
+        color: black;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        background-color: tan;
+        border: 2px solid black;
+        margin: auto;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        border-radius: .25rem;
+    }
+
+    .button:hover {
+        background-color: rgb(219, 218, 218);
+        color: black;
+    }
+
+    .button:active {
+        background-color: #cfcfcf;
+        color: black;
+    }
+
+    .btns button {
+        outline: none;
+        border: none;
+        background-color: var(--Lightgrayish);
+        color: var(--Orange);
+        padding: 0.7rem 1.2rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .qty-numbers {
+        color: var(--Darkgrayish);
+        font-weight: 600;
+        width: 4rem;
+        text-align: center;
+        margin: 0 0.5rem;
+    }
+
+    .add-cart {
+        outline: none;
+        border: none;
+        background-color: var(--Orange);
+        font-family: inherit;
+        color: var(--White);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 2rem;
+        border-radius: 5px;
+        margin-top: 2rem;
+        cursor: pointer;
+    }
+
+    .add-cart svg {
+        margin-right: 1rem;
+    }
+
+    .box {
+        margin-top: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: hsl(0, 0%, 0%);
+        color: tan;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .box img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        margin: auto;
+    }
+
+    .button-container form {
+        display: inline-block;
+        margin-right: 10px;
+    }
+</style>
+
+<h1>Cart</h1>
+<div class="container">
+    <h4>Username: {{ cart.user }} - Total Price: {{ cart.total_price }}</h4>
+
+    <div class="row">
+        {% for cart_item in cart.cartitem_set.all %}
+        <div class="column">
+            <div class="card bg-dark text-white" style="width: 18rem;">
+                <img class="card-img-top" src="../../{{ cart_item.product.image }}" alt="Card image cap">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h5 class="card-title">{{ cart_item.product.name }}</h5>
+                            <p>Quantity: {{ cart_item.quantity }}</p>
+                        </div>
+                        <div class="col-12">
+                            <p class="card-text">{{ cart_item.product.price }}</p>
+                        </div>
+                    </div>
+                    <!-- <p class="card-text">{{ cart_item.product.description }}</p> -->
+                    <div class="button-container">
+                        <form action="{% url 'increment_quantity' cart_item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">+</button>
+                        </form>
+                        <form action="{% url 'decrement_quantity' cart_item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">-</button>
+                        </form>
+                        <form action="{% url 'remove_from_cart' cart_item.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Remove from Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </hr>
+    </hr>
+    {% if cart.total_price > 0 %}
+    <form id="buyNowFormcart" action="{% url 'buy_now_from_cart' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Buy Now</button>
+    </form>
+    {% else %}
+    <h5>Your cart is empty </h5>
+    <a href="{% url 'product' %}" class="button">Browse Products &#10142;</a>
+    {% endif %}
+
+
+</div>
+{% include 'helper/footer.html' %}

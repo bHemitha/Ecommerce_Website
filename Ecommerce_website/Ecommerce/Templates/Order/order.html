@@ -1,0 +1,91 @@
+{% include 'helper/header.html' %}
+{% include 'helper/cssfile.html' %}
+<style>
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        width: 500px;
+        margin: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+        background-color: black;
+        color: white;
+    }
+
+    .card-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: tan;
+    }
+
+    .card-text {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .btn-primary {
+        background-color: tan;
+        color: black;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #636465;
+    }
+</style>
+
+{% block content %}
+
+<h1>Your Orders</h1>
+<div class="card-container">
+    {% for order in orders %}
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Order ID: {{ order.id }}</h4>
+            <p class="card-text">Order Date: {{ order.order_date }}</p>
+            <p class="card-text">Shipment Date: {{ order.shipment_date }}</p>
+            <p class="card-text">Order Price : {{ order.price }}</p>
+            </br>
+            <h5 class="card-title">Order Items:</h5>
+            <ul>
+                {% for ordered_item in ordered_items %}
+                {% if ordered_item.order == order %}
+                <div>
+                    </br>
+                    <img src="../../{{ ordered_item.product.image }}" class="card-img" alt="Product">
+                    </br>
+                    <div class="container">
+                        <p>Product Name: {{ ordered_item.product.name }}</p>
+                        <p>Quantity: {{ ordered_item.quantity }}</p>
+                        <p>Price: {{ ordered_item.product.price }}</p>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+{% include 'helper/footer.html' %}

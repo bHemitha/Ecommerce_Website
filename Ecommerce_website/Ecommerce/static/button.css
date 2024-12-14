@@ -1,0 +1,180 @@
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: rgb(216, 188, 151);
+}
+legend
+{
+    color: rgb(216, 188, 151);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: rgb(216, 188, 151);
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-group label {
+    margin-right: 20px;
+    font-weight: normal;
+    color: #ccc;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    color: rgb(216, 188, 151);
+    background-color: #555;
+    appearance: none;
+}
+
+.form-group select:focus {
+    outline: none;
+    border-color: #282929;
+    box-shadow: 0 0 0 2px rgba(77, 144, 254, 0.2);
+}
+
+.form {
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ccc;
+    background-color: #000;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: rgb(216, 188, 151);
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: rgb(216, 188, 151);
+}
+
+.form select {
+    height: 40px;
+}
+.h2 {
+    font-size: 24px;
+    color: rgb(216, 188, 151);
+}
+
+.form {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+button {
+    display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: tan;
+  border: 2px solid black;
+  margin: auto;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem;
+}
+
+button:hover {
+    background-color: rgb(84, 84, 84);
+}
+
+button:active {
+    background-color: #302f2e;
+}
+
+    img {
+        height: 225px;
+        width: 70px;
+    }
+
+    .column {
+        float: left;
+        width: 25%;
+        padding: 0 10px;
+    }
+
+    .row {
+        margin: 0 -5px;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    @media screen and (max-width: 600px) {
+        .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+        }
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        text-align: center;
+        margin: 20PX;
+    }
+
+    .card-link {
+        color: tan;
+    }
+    .button-container form {
+        display: inline;
+        margin-right: 10px;
+    }

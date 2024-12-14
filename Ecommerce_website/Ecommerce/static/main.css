@@ -1,0 +1,42 @@
+.py-3 {
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
+    position: fixed;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    color: grey;
+    text-align: center;
+}
+.my-4 {
+    margin-top: 1rem !important;
+    margin-bottom: 0rem !important;
+}
+
+/* Custom CSS for the Navbar */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    background-color: #343a40;
+}
+
+.dropdown-menu a.dropdown-item {
+    color: #ffffff;
+}
+
+.dropdown-menu a.dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
